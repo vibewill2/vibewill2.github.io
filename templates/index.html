@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Meu Blog</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <header>
+        <h1>Blog Simples com Flask</h1>
+        <a href="{{ url_for('login') }}">Login</a>
+    </header>
+    <main>
+        {% for post in posts %}
+        <div class="post-card">
+            <h2><a href="{{ url_for('view_post', post_id=post.id) }}">{{ post.titulo }}</a></h2>
+            <p>{{ post.conteudo[:100] }}...</p>
+            <small>Por: {{ post.autor }}</small>
+        </div>
+        {% endfor %}
+    </main>
+</body>
+</html>

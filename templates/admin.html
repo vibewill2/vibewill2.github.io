@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Administração</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <header>
+        <h1>Área de Administração</h1>
+        <a href="{{ url_for('logout') }}">Sair</a>
+    </header>
+    <main>
+        <h2>Adicionar Novo Post</h2>
+        <form method="post" action="{{ url_for('admin') }}">
+            <input type="text" name="titulo" placeholder="Título do Post">
+            <textarea name="conteudo" placeholder="Conteúdo do Post"></textarea>
+            <button type="submit">Adicionar Post</button>
+        </form>
+
+        <hr>
+
+        <h2>Posts Existentes</h2>
+        <ul>
+            {% for post in posts %}
+            <li>
+                {{ post.titulo }} - <a href="{{ url_for('delete_post', post_id=post.id) }}">Deletar</a>
+            </li>
+            {% endfor %}
+        </ul>
+    </main>
+</body>
+</html>
